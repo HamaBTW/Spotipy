@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Playlists</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+
+    <link rel="icon" type="image/ico" href="{{ url_for('static', filename='icon.ico') }}">
+    
+    <script>
+        function exportAllSongs() {
+            showExportingMessage(); // Display exporting message
+
+            fetch("{{ url_for('exportAllSongs') }}")
+                .then(response => {
+                    if (response.ok) {
+                        showExportSuccessMessage();
+                    } else {
+                        showExportErrorMessage();
+                    }
+                })
+                .catch(error => {
+                    console.error("Export error:", error);
+                    showExportErrorMessage();
+                });
+        }
+
+        function exportSongs(playlistId) {
+            showExportingMessage(); // Display exporting message
+
+            fetch(`{{ url_for('exportSongs', playlist_id='') }}${playlistId}`)
+                .then(response => {
+                    if (response.ok) {
+                        showExportSuccessMessage();
+                    } else {
+                        showExportErrorMessage();
+                    }
+                })
+                .catch(error => {
+                    console.error("Export error:", error);
+                    showExportErrorMessage();
+                });
+        }   
+    </script>
+    
+</head>
+<body class="{% if theme == 'dark' %}dark-theme{% endif %}"> 
+    <div class="container">
+        <div class="profile">
+            <div class="profile-info">
+                <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <h2 class="profile-name">Hello, {{ display_name }}!</h2>
+            </div>
+            <div class="profile-picture">
+                {% if profile_picture %}
+                    <img class="profile-image" src="{{ profile_picture }}" alt="Profile Picture">
+                {% else %}
+                    <img class="profile-image" src="{{ url_for('static', filename='default-profile.png') }}" alt="Default Profile Picture">
+                {% endif %}
+            </div>
+        </div>
+        
+        <h1 class="header">Saved Playlists</h1>
+        <ul class="playlists">
+            {% for playlist in playlists %}
+            <li class="playlist-item">
+                <a class="playlist-link" href="{{ url_for('showSongs', playlist_id=playlist['id']) }}">{{ playlist['name'] }}</a>
+                <a class="export-link" href="#" onclick="exportSongs('{{ playlist['id'] }}');">Export</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div>
+            <a class="export-link" href="#" onclick="exportAllSongs();">Export All Songs</a>
+        </div>
+    </div>
+</body>
+</html>

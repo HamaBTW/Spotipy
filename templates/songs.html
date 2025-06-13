@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ playlist_name }} Songs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+
+    <link rel="icon" type="image/ico" href="{{ url_for('static', filename='icon.ico') }}">
+
+</head>
+<body class="{% if theme == 'dark' %}dark-theme{% endif %}">
+    <div class="container">
+        <div class="profile">
+            <div class="profile-info">
+                <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <h2 class="profile-name">Hello, {{ display_name }}!</h2>
+            </div>
+            <div class="profile-picture">
+                {% if profile_picture %}
+                    <img class="profile-image" src="{{ profile_picture }}" alt="Profile Picture">
+                {% else %}
+                    <img class="profile-image" src="{{ url_for('static', filename='default-profile.png') }}" alt="Default Profile Picture">
+                {% endif %}
+            </div>
+        </div>
+        
+        <h1 class="header">{{ playlist_name }} Songs</h1>
+        <ul class="songs-list">
+            {% for track in tracks %}
+            <li class="song-item">{{ track['track']['name'] }} - {{ track['track']['artists'][0]['name'] }}</li>
+            {% endfor %}
+        </ul>
+        <div>
+            <a class="return-link" href="{{ url_for('selectPlaylist') }}?theme={{ savedTheme }}">Return to Playlists</a>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>

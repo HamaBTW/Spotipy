@@ -1,0 +1,205 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Toggle Button Styles */
+.theme-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-size: 20px; /* Adjust size as needed */
+}
+
+.theme-toggle .fa-moon {
+    opacity: 0;
+    color: #fff; /* Set icon color in dark mode */
+}
+
+.dark-theme .theme-toggle .fa-moon {
+    opacity: 1;
+}
+
+.dark-theme .theme-toggle .fa-sun {
+    opacity: 0;
+}
+
+.light-theme .theme-toggle .fa-sun {
+    opacity: 1;
+    color: #f39c12; /* Set icon color in light mode */
+}
+
+#theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: #181818;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dark-theme .container {
+    background-color: #121212;
+}
+
+.dark-theme .header {
+    color: #fff;
+}
+
+.dark-theme .profile-name {
+    color: #f3f3f3; /* Adjust to your preference */
+}
+
+.dark-theme .playlists {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.dark-theme .playlist-item {
+    border-color: #333;
+    background-color: #121212;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.dark-theme .playlist-item:hover {
+    background-color: #2b2a2a; /* Adjust the color as needed */
+}
+
+.dark-theme .playlist-link {
+    color: #1db954;
+}
+
+.dark-theme .playlist-link:hover {
+    color: #43cc6a;
+}
+
+.dark-theme .export-link {
+    color: #1db954;
+}
+
+.dark-theme .export-link:hover {
+    color: #43cc6a;
+}
+
+.container {
+    max-width:80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.profile-picture {
+    margin-left: 20px;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.playlists {
+    list-style: none;
+    padding: 0;
+}
+
+.playlist-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.playlist-item:hover {
+    background-color: #f7f7f7; /* Adjust the color as needed */
+}
+
+.playlist-link {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.playlist-link:hover {
+    color: #0056b3;
+}
+
+.export-link {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.export-link:hover {
+    color: #218838;
+}
+
+.songs-list {
+    list-style: none;
+    padding: 0;
+}
+
+.song-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.return-link {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.return-link:hover {
+    color: #0056b3;
+}
